@@ -1,0 +1,45 @@
+\#include <kipr/wombat.h>
+
+int main()
+{  
+    wait_for_light(0); 
+ 
+    create_connect();
+    
+    //Don't forget to set arm as 426
+   
+    create_full();
+    
+    enable_servos();
+  
+    create_drive_direct(-100,-100); //forward to edge of poms
+    msleep(2400);
+    
+    create_drive_direct(100,-100); //turn to face line of poms
+    msleep(1500);
+    
+    create_drive_direct(-50,-50); //going down line of poms
+    msleep(280);
+    
+    create_drive_direct(-100,-100); //inching forward
+    msleep(580); 
+    
+    create_drive_direct(20,-20); // spinning to head back with poms
+    msleep(12000); 
+    
+    create_drive_direct(-50,-50); //going back down line with poms
+    msleep(24000);
+    
+    create_drive_direct(-20,20); //spinning poms into start box
+    msleep(5000);
+    
+    printf("GCER\n");
+    
+    set_servo_position(0,426); //set arm to only be 14 inches tall
+    
+    create_disconnect();
+     
+    shut_down_in(118);
+    
+    return 0;
+}
